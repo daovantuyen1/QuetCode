@@ -13,6 +13,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Text.RegularExpressions;
 
 namespace RMSExternalApi.Controllers
 {
@@ -731,7 +732,9 @@ namespace RMSExternalApi.Controllers
 
                 if (!string.IsNullOrWhiteSpace(cvJobInfor?.CV_TEMP_FILE))
                 {
+                    cvJobInfor.CV_TEMP_FILE=Regex.Replace(cvJobInfor.CV_TEMP_FILE.Replace(".pdf", "***"))+".pdf";
                     string oldCVFilePath = Constant.TEMP_CV_FOLDER + @"\" + cvJobInfor.CV_TEMP_FILE;
+                    oldCVFilePath= Path.Combine("",oldCVFilePath);
                     if (System.IO.File.Exists(oldCVFilePath))
                         System.IO.File.Delete(oldCVFilePath);
 
