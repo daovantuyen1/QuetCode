@@ -732,7 +732,7 @@ namespace RMSExternalApi.Controllers
 
                 if (!string.IsNullOrWhiteSpace(cvJobInfor?.CV_TEMP_FILE))
                 {
-                    cvJobInfor.CV_TEMP_FILE=Regex.Replace(cvJobInfor.CV_TEMP_FILE.Replace(".pdf", "***"))+".pdf";
+                    cvJobInfor.CV_TEMP_FILE=Regex.Replace(cvJobInfor.CV_TEMP_FILE.Replace(".pdf", "***"),"[^a-zA-Z0-9-]","")+".pdf";
                     string oldCVFilePath = Constant.TEMP_CV_FOLDER + @"\" + cvJobInfor.CV_TEMP_FILE;
                     oldCVFilePath= Path.Combine("",oldCVFilePath);
                     if (System.IO.File.Exists(oldCVFilePath))
